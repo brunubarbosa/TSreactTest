@@ -8,7 +8,7 @@ interface Props {
 
 }
 
-function Content({textValue, data}: Props) {
+export function Content({textValue, data}: Props) {
   return (
     <div>
       <ul>
@@ -19,7 +19,6 @@ function Content({textValue, data}: Props) {
 }
 
 const mapStateToProps = ({todos}: ApplicationState) => {
-  console.log(todos)
   return todos
 }
 

@@ -26,8 +26,7 @@ type Props = StateProps & DispatchProps & OwnProps
 
 
 
-const Input = ({ textValue, addTodo, changeInputValue }: Props) => {
-  console.log(textValue)
+export const Input = ({ textValue, addTodo, changeInputValue }: Props) => {
 
   const handleChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
     changeInputValue(event.currentTarget.value)
@@ -50,7 +49,6 @@ const Input = ({ textValue, addTodo, changeInputValue }: Props) => {
 }
 
 const mapStateToProps = ({todos}: ApplicationState) => {
-  console.log(todos)
   return todos
 }
 

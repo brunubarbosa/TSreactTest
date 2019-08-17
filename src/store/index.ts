@@ -4,7 +4,8 @@ import { TodosState } from './ducks/todos/types';
 
 
 export interface ApplicationState {
-  todos: TodosState
+  todos: TodosState,
+  textValue: string
 }
 
 const store: Store<ApplicationState> = createStore(rootReducer);

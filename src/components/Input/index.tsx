@@ -7,23 +7,54 @@ import { ApplicationState } from '../../store';
 import * as TodosActions from '../../store/ducks/todos/actions';
 
 
+export interface StateProps {
+  todos: Todo[]
+}
+
+export interface DispatchProps {
+  addTodo(inputText: string): void
+  changeInputValue(inputText: string): void
+}
+
+interface OwnProps {
+  textValue: string
+  data: ApplicationState
+
+}
+
+type Props = StateProps & DispatchProps & OwnProps
 
 
-function Input() {
+
+const Input = ({ textValue, addTodo, changeInputValue }: Props) => {
+  console.log(textValue)
+
+  const handleChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
+    changeInputValue(event.currentTarget.value)
+  }
+
+  const handleSubmit = (event: React.FormEvent): void => {
+    event.preventDefault()
+    addTodo(textValue)
+    changeInputValue('');
+
+    
+  }
+
   return (
-    <form>
-      <input type="text" />
+    <form onSubmit={handleSubmit}>
+      <input type="text" onChange={handleChangeInput}  value={textValue}/>
       <button type="submit">Adicionar</button>
     </form>
   )
 }
 
-const mapStateToProps = (state: ApplicationState) => {
-  console.log(state)
-  return state
+const mapStateToProps = ({todos}: ApplicationState) => {
+  console.log(todos)
+  return todos
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators(TodosActions, dispatch)
   
-export default connect(mapStateToProps, mapDispatchToProps)(Input);
+export default connect(mapStateToProps, mapDispatchToProps)(Input as any);

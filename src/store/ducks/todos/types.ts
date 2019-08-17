@@ -1,5 +1,6 @@
 export enum TodosTypes {
-  ADD_TODO = '@todos/ADD_TODO'
+  ADD_TODO = '@todos/ADD_TODO',
+  INPUT_VALUE = '@todos/INPUT_VALUE'
 }
 
 export interface Todo {
@@ -7,5 +8,10 @@ export interface Todo {
 }
 
 export interface TodosState {
-  readonly data: Todo[]
+  readonly data: Todo[],
+  readonly textValue: string
+}
+
+export interface InputValue {
+  text: string
 }
